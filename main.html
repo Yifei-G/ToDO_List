@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/main.css" rel="stylesheet" type="text/css">
+    <title>TO-DO List</title>
+</head>
+<body>
+    <header>
+        <h1>A Simple To-Do list</h1>
+    </header>
+    <main id="app">
+        
+        <div id="app-container">
+            <div>
+                <div id="input-container">
+                    <label>New To-Do:</label>
+                    <input type="text" id="new-todo" class="todo-input">
+                </div>
+                
+                <button id="add-todo" class="todo-button" onclick="addNewToDo()">Add to-do</button>
+            </div>
+                <div id="error-container">
+                    <span id="error-message"></span>
+                </div>
+
+                
+
+
+            <div id="background-container">
+                <div id="todo-list-container">
+                    <ul id="todo-list">
+                        <li>
+                            <input type="checkbox" class="todo-check">
+                            <span class="todo-item">Buy groceries in the Supermarket</span>
+                        </li>
+        
+                        <li>
+                            <input type="checkbox" class="todo-check">
+                            <span class="todo-item">Study German</span>
+                        </li>
+        
+                        <li>
+                            <input type="checkbox" class="todo-check">
+                            <span class="todo-item">Talk to Nestor</span>
+                        </li>
+        
+                        <li>
+                            <input type="checkbox" class="todo-check">
+                            <span class="todo-item">Go to Apple store and check the new iPhone</span>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+        </div>
+    </main>
+</body>
+<script src="./js/main.js"></script>
+</html>
