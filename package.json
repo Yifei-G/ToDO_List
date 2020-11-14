@@ -1,0 +1,25 @@
+{
+  "name": "todo_list",
+  "version": "1.0.0",
+  "description": "## About the project:",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yifei-G/ToDO_List.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yifei-G/ToDO_List/issues"
+  },
+  "homepage": "https://github.com/Yifei-G/ToDO_List#readme",
+  "dependencies": {
+    "nanoid": "^3.1.16"
+  }
+}
