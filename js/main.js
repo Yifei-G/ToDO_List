@@ -1,10 +1,14 @@
 import Request from "./request.js";
+import {nanoid} from "../node_modules/nanoid/nanoid.js";
+
 
 function createTodoList(todos){
     const todoList = document.querySelector("#todo-list");
     todos.forEach(todo=>{
+        //generate a uuid for each todo item
+        const id = nanoid(5);
         const newTodo = `<li> <input type="checkbox" class="todo-check">
-        <span class="todo-item">${todo}</span> </li>`;        
+        <span id="todo-item-${id}" class="todo-item">${todo}</span> </li>`;     
         todoList.insertAdjacentHTML("beforeend",newTodo);
     });
 
@@ -33,9 +37,11 @@ function addClickEvent(todoInput){
         const todoItem = todoInput.nextElementSibling;
         if (todoInput.checked){
             todoItem.style.textDecorationLine = "line-through";
+            addToCompletedList(todoItem);
         }
         else{
             todoItem.style.textDecorationLine = "none";
+            removeFromCompletedList(todoItem);
         }
     });
 }
@@ -50,8 +56,9 @@ function addNewTodo(){
     const userTodo = document.querySelector("#new-todo").value;
     if(userTodo){
         const todoList = document.querySelector("#todo-list");
+        const id = nanoid(5);
         const newTodo = `<li> <input type="checkbox" class="todo-check">
-        <span class="todo-item">${userTodo}</span> </li>`;
+        <span id="todo-item-${id}" class="todo-item">${userTodo}</span> </li>`;
         todoList.insertAdjacentHTML("beforeend",newTodo);
 
         //get all the checkboxes
@@ -66,6 +73,26 @@ function addNewTodo(){
         errorOutput.style.color = "red";
         errorOutput.textContent = "You must write a TO-DO first!!!"
     }
+}
+
+
+function addToCompletedList(finishedItem){
+    //making a ID for finished todo. 
+    //the ID shares the UUID, but start with finished-item
+    const finishedElementID = finishedItem.id.replace("todo","finished");
+    const finishedElement = `<li><span id="${finishedElementID}" class="finished-item">${finishedItem.textContent}</span></li>`;
+    const finishedList = document.querySelector("#finished-list");
+    finishedList.insertAdjacentHTML("beforeend",finishedElement);
+}
+
+
+function removeFromCompletedList(finishedItem){
+    const finishedList = document.querySelector("#finished-list");
+    const finishedElementID = finishedItem.id.replace("todo","finished");
+    //find the todo using the ID;
+    const finishedTodo = document.querySelector(`#${finishedElementID}`);
+    //finishedTodo is <span>, but we want to remove <li>, which is the parentElement
+    finishedList.removeChild(finishedTodo.parentElement);
 }
 
 function inputOnfocus(){
