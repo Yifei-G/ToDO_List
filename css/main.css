@@ -50,6 +50,10 @@ main{
     outline: 0;
     border-width: 0 0 2px;
     width: 10em;
+    transition: border-color 1s ease-out;
+}
+.todo-input:focus{
+    border-bottom-color: rgba(231, 83, 69, 0.925);
 }
 .todo-button{
     width: 18%;
