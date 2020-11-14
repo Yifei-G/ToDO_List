@@ -13,7 +13,7 @@
     <main id="app">
         
         <div id="app-container">
-            <div>
+            <div class="flex-container">
                 <div id="input-container">
                     <label>New To-Do:</label>
                     <input type="text" id="new-todo" class="todo-input">
@@ -25,14 +25,21 @@
                     <span id="error-message"></span>
                 </div>
 
-            
-
             <div id="background-container">
                 <div id="todo-list-container">
                     <ul id="todo-list">
                     </ul>
                 </div>
             </div> 
+
+            <div id="finished-task-container">
+                <div>
+                    <h2 class="title-finished-task">Completed Tasks:</h2>
+                    <ul id="finished-list">                        
+                    </ul>
+                </div>
+
+            </div>
         </div>
     </main>
 </body>
