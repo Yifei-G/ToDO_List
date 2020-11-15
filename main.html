@@ -28,15 +28,27 @@
             <div id="background-container">
                 <div id="todo-list-container">
                     <ul id="todo-list">
+                        <div id="flipBtn-container">
+                            <button id="flipBtn" class="completedBtn">View Complated tasks</button>
+                        </div>
+                        
                     </ul>
+                    
                 </div>
             </div> 
 
             <div id="finished-task-container">
-                <div>
-                    <h2 class="title-finished-task">Completed Tasks:</h2>
-                    <ul id="finished-list">                        
-                    </ul>
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        
+                    </div>
+                    <div class="flip-card-back">
+                       
+                        <h2 class="title-finished-task">Completed Tasks:</h2>
+                        <ul id="finished-list">                        
+                        </ul>
+                        <button id="returnBtn" class="completedBtn">Return</button>
+                    </div>
                 </div>
 
             </div>
