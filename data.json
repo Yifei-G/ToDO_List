@@ -1,9 +1,28 @@
+{
+  "to-dos": [
     {
-        "to-dos":    [
-            "Buy groceries in the Supermarket", 
-            "Study German", 
-            "Talk to Nestor" , 
-            "Go to Apple store and check the new iPhone"
-        ]
-        
+      "id": "todo-item-3UqTE",
+      "todo": "Buy groceries in the Supermarket"
+    },
+    {
+      "id": "todo-item-jCr5b",
+      "todo": "Study German"
+    },
+    {
+      "id": "todo-item-O2EdG",
+      "todo": "Talk to Nestor"
+    },
+    {
+      "id": "todo-item-jeFD0",
+      "todo": "Go to Apple store and check the new iPhone"
+    },
+    {
+      "id": "todo-item-1QapC",
+      "todo": "go to the dentist on Monday"
+    },
+    {
+      "id": "todo-item-wJeTQ",
+      "todo": "go to the bank"
     }
+  ]
+}

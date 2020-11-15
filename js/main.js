@@ -4,11 +4,9 @@ import {nanoid} from "../node_modules/nanoid/nanoid.js";
 
 function createTodoList(todos){
     const todoList = document.querySelector("#todo-list");
-    todos.forEach(todo=>{
-        //generate a uuid for each todo item
-        const id = nanoid(5);
+    todos.forEach(todoItem=>{
         const newTodo = `<li> <input type="checkbox" class="todo-check">
-        <span id="todo-item-${id}" class="todo-item">${todo}</span> </li>`;     
+        <span id="${todoItem.id}" class="todo-item">${todoItem.todo}</span> </li>`;     
         todoList.insertAdjacentHTML("beforeend",newTodo);
     });
 
@@ -23,12 +21,23 @@ async function getTodos(){
     const request = new Request();
     request.setBaseURL("http://localhost:3000");
     try{
-            const data = await request.loadTOdos("/to-dos");
+            const data = await request.loadTodos("/to-dos");
             createTodoList(data);
     }catch(error){
         console.log(error);
     }
 
+}
+
+async function saveNewTodos(todo){
+    const request = new Request();
+    request.setBaseURL("http://localhost:3000");
+    try{
+        const data = await request.postTodos("/to-dos",todo);
+        console.log(data);
+    }catch(error){
+        console.log(error);
+    }
 }
 
 
@@ -60,6 +69,12 @@ function addNewTodo(){
         const newTodo = `<li> <input type="checkbox" class="todo-check">
         <span id="todo-item-${id}" class="todo-item">${userTodo}</span> </li>`;
         todoList.insertAdjacentHTML("beforeend",newTodo);
+        //post todos to the server
+        const userTodoItem = {
+            id: `todo-item-${id}`,
+            todo: userTodo
+        }
+        saveNewTodos(userTodoItem);
 
         //get all the checkboxes
         const todoCheckboxes = document.querySelectorAll(".todo-check");
