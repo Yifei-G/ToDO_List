@@ -103,6 +103,14 @@ function inputOnfocus(){
     });
 }
 
+function viewCmptTodos(){
+    const flipDiv = document.querySelector(".flip-card-inner");
+        (flipDiv.style.transform === "rotateY(180deg)") ? flipDiv.style.transform = "rotateY(0deg)" : flipDiv.style.transform = "rotateY(180deg)";
+}
+
+document.querySelector("#flipBtn").onclick = viewCmptTodos;
+document.querySelector("#returnBtn").onclick = viewCmptTodos;
+
 getTodos();
 addTodoOnClick();
 inputOnfocus();
