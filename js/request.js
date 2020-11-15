@@ -7,9 +7,21 @@ export default class Request {
         this.baseURL = baseURL;
     }
     
-    async loadTOdos(relativeUrl){
-        const URL = this.baseURL + relativeUrl;
+    async loadTodos(relativeURL){
+        const URL = this.baseURL + relativeURL;
         const response = await fetch(URL);
+        return response.json();
+    }
+
+    async postTodos(relativeURL,todo){
+        const URL = this.baseURL + relativeURL;
+        const response = await fetch(URL,{
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(todo)
+        });
         return response.json();
     }
 
