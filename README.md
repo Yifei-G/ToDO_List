@@ -11,11 +11,11 @@ This project contain dependencies of other projects, if you want to run this pro
 
 1. Clone this repository to your local working enviroment (whatever directory in your computer)
 
-2. inside the ToDO_List folder, run the following command:
+2. inside the ToDO_List/ folder, run the following command:
     npm install (you need to install npm first!!!)  Check the [official website to get npm](https://www.npmjs.com/get-npm).
     
 3. Since this web project contains interaction with a jason server, you need to run the project in a local web server. The simple option is use python web server:
-If you have python3 installed in the project folder, run the following command:
+If you have python3 installed, in the project folder, run the following command:
 ```
 python3 -m http.server
 ```
