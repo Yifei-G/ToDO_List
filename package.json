@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Yifei-G/ToDO_List#readme",
   "dependencies": {
+    "jason-server": "^3.0.0",
     "nanoid": "^3.1.16"
   }
 }
