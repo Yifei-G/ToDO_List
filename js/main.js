@@ -4,16 +4,24 @@ import {nanoid} from "../node_modules/nanoid/nanoid.js";
 
 function createTodoList(todos){
     const todoList = document.querySelector("#todo-list");
-    todos.forEach(todoItem=>{
-        const newTodo = `<li> <input type="checkbox" class="todo-check">
-        <span id="${todoItem.id}" class="todo-item">${todoItem.todo}</span> </li>`;     
+    todos.forEach(todo=>{
+        const finishedTodo = (todo.isFinished ? "todo-item-finished" : "");
+        const checked = (todo.isFinished ? "checked" : "");
+        const newTodo = `<li> <input type="checkbox" class="todo-check" ${checked}>
+        <span id="${todo.id}" class="todo-item ${finishedTodo}">${todo.description}</span> </li>`;
         todoList.insertAdjacentHTML("beforeend",newTodo);
     });
 
     // after all the todos are in the DOM, get all of them and add click eventListener one by one.
     // todoCheckboxes is nodeList not JS Array!!!
     const todoCheckboxes = document.querySelectorAll(".todo-check");
-    todoCheckboxes.forEach(todoCheckbox => addClickEvent(todoCheckbox));
+    todoCheckboxes.forEach(todoCheckbox => {
+        addClickEvent(todoCheckbox);
+        const todoItem = todoCheckbox.nextElementSibling;
+        if (todoItem.classList.contains("todo-item-finished")){
+            addToCompletedList(todoItem);
+        } 
+    });
 }
 
 
@@ -44,13 +52,14 @@ async function saveNewTodos(todo){
 function addClickEvent(todoInput){
     todoInput.addEventListener("click",()=>{
         const todoItem = todoInput.nextElementSibling;
-        if (todoInput.checked){
-            todoItem.style.textDecorationLine = "line-through";
-            addToCompletedList(todoItem);
+        if (todoItem.classList.contains("todo-item-finished")){
+            todoItem.classList.remove("todo-item-finished");
+            removeFromCompletedList(todoItem);
         }
         else{
-            todoItem.style.textDecorationLine = "none";
-            removeFromCompletedList(todoItem);
+            todoItem.classList.add("todo-item-finished");
+            addToCompletedList(todoItem);
+            
         }
     });
 }
@@ -72,7 +81,8 @@ function addNewTodo(){
         //post todos to the server
         const userTodoItem = {
             id: `todo-item-${id}`,
-            todo: userTodo
+            description: userTodo,
+            isFinished: false
         }
         saveNewTodos(userTodoItem);
 
@@ -95,7 +105,7 @@ function addToCompletedList(finishedItem){
     //making a ID for finished todo. 
     //the ID shares the UUID, but start with finished-item
     const finishedElementID = finishedItem.id.replace("todo","finished");
-    const finishedElement = `<li><span id="${finishedElementID}" class="finished-item">${finishedItem.textContent}</span></li>`;
+    const finishedElement = `<li><span id="${finishedElementID}" class="finished-item">${finishedItem.textContent}</span> <i class="fas fa-check"></i> </li>`;
     const finishedList = document.querySelector("#finished-list");
     finishedList.insertAdjacentHTML("beforeend",finishedElement);
 }

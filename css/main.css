@@ -70,6 +70,12 @@ main{
 .todo-check{
     margin-right: 10px;
 }
+
+.todo-item-finished{
+    text-decoration: line-through;
+}
+
+
 .todo-input{
     width: 30%;
     margin-left: 2px;
@@ -124,6 +130,13 @@ main{
 }
 label{
     color: rgba(231, 83, 69, 0.925);
+}
+
+
+.fa-check{
+    cursor: pointer;
+    float: right;
+    margin-right: 10px;
 }
 
 .title-finished-task{
@@ -190,3 +203,4 @@ label{
     margin-top: 10px;
     
   }
+  /* ------------------------------- */
