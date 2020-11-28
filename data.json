@@ -2,31 +2,38 @@
   "to-dos": [
     {
       "id": "todo-item-3UqTE",
-      "todo": "Buy groceries in the Supermarket"
+      "description": "Buy groceries in the Supermarket",
+      "isFinished": false
     },
     {
       "id": "todo-item-jCr5b",
-      "todo": "Study German"
+      "description": "Study German",
+      "isFinished": false
     },
     {
       "id": "todo-item-O2EdG",
-      "todo": "Talk to Nestor"
+      "description": "Talk to Nestor",
+      "isFinished": true
     },
     {
       "id": "todo-item-jeFD0",
-      "todo": "Go to Apple store and check the new iPhone"
+      "description": "Go to Apple store and check the new iPhone",
+      "isFinished": true
     },
     {
       "id": "todo-item-1QapC",
-      "todo": "go to the dentist on Monday"
+      "description": "go to the dentist on Monday",
+      "isFinished": true
     },
     {
       "id": "todo-item-wJeTQ",
-      "todo": "go to the bank"
+      "description": "go to the bank",
+      "isFinished": false
     },
     {
       "id": "todo-item-PfErO",
-      "todo": "Cenar con Nestor"
+      "description": "Cenar con Nestor",
+      "isFinished": false
     }
   ]
 }
