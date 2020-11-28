@@ -16,11 +16,19 @@ function createTodoList(todos){
     // todoCheckboxes is nodeList not JS Array!!!
     const todoCheckboxes = document.querySelectorAll(".todo-check");
     todoCheckboxes.forEach(todoCheckbox => {
-        addClickEvent(todoCheckbox);
+        addTodoClickEvt(todoCheckbox);
         const todoItem = todoCheckbox.nextElementSibling;
+        // builing the completed todos list
         if (todoItem.classList.contains("todo-item-finished")){
             addToCompletedList(todoItem);
         } 
+    });
+
+    // adding click eventListener to the tic icon. 
+    const finishedTodos = document.querySelectorAll(".finished-item");
+    finishedTodos.forEach(finishedTodo =>{
+        const finishedTic = finishedTodo.nextElementSibling;
+        addFinishedTodoClickEvt(finishedTodo,finishedTic);
     });
 }
 
@@ -48,8 +56,20 @@ async function saveNewTodos(todo){
     }
 }
 
+async function removeFinishedTodo(todoID){
+    const request = new Request();
+    request.setBaseURL("http://localhost:3000");
+    try{
 
-function addClickEvent(todoInput){
+        const data = await request.removeTodo("/to-dos",todoID);
+        console.log(data);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+
+function addTodoClickEvt(todoInput){
     todoInput.addEventListener("click",()=>{
         const todoItem = todoInput.nextElementSibling;
         if (todoItem.classList.contains("todo-item-finished")){
@@ -63,6 +83,41 @@ function addClickEvent(todoInput){
         }
     });
 }
+
+
+
+function addFinishedTodoClickEvt(finishedItem, ticIcon){
+    ticIcon.addEventListener("click",()=>removeTodo(finishedItem));
+}
+
+function removeTodo(finishedItem){
+    debugger;
+    const TodosList = document.querySelector("#todo-list");
+    const finishedTodosList = document.querySelector("#finished-list");
+    const TodoElementID = finishedItem.id.replace("finished","todo");
+    const TodoElement = document.getElementById(TodoElementID);
+
+    //remove the todo from the todo list
+    // TodoElement is <input> but we want to remove <li> (aka the parentElement)
+    TodosList.removeChild(TodoElement.parentElement);
+
+    //remove the finished todo from the completed todo list
+    // TodoElement is <span> but we want to remove <li> (aka the parentElement)
+    finishedTodosList.removeChild(finishedItem.parentElement);
+
+
+    //make a delete request to erase this todo.
+    removeFinishedTodo(TodoElementID);
+
+}
+
+
+
+
+
+
+
+
 
 
 function addTodoOnClick(){
@@ -90,7 +145,7 @@ function addNewTodo(){
         const todoCheckboxes = document.querySelectorAll(".todo-check");
         //only add the clickEvent to the last todo 
         const lastTodo = todoCheckboxes[todoCheckboxes.length - 1];
-        addClickEvent(lastTodo);
+        addTodoClickEvt(lastTodo);
         document.querySelector("#new-todo").value = "";
     }
     else{
@@ -105,7 +160,7 @@ function addToCompletedList(finishedItem){
     //making a ID for finished todo. 
     //the ID shares the UUID, but start with finished-item
     const finishedElementID = finishedItem.id.replace("todo","finished");
-    const finishedElement = `<li><span id="${finishedElementID}" class="finished-item">${finishedItem.textContent}</span> <i class="fas fa-check"></i> </li>`;
+    const finishedElement = `<li><span id="${finishedElementID}" class="finished-item">${finishedItem.textContent}</span> <i id="${finishedElementID}" class="fas fa-check"></i> </li>`;
     const finishedList = document.querySelector("#finished-list");
     finishedList.insertAdjacentHTML("beforeend",finishedElement);
 }

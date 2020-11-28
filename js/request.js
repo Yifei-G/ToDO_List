@@ -25,6 +25,14 @@ export default class Request {
         return response.json();
     }
 
+    async removeTodo(relativeURL,ID){
+        const URL = this.baseURL + relativeURL + "/" + ID;
+        console.log(URL);
+        const response = await fetch(URL,{
+            method: "DELETE"
+        });
+        return response.json();
+    }
 }
 
 
