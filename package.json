@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Yifei-G/ToDO_List#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "jason-server": "^3.0.0",
     "nanoid": "^3.1.16"
   }
