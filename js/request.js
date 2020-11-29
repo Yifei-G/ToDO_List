@@ -33,6 +33,21 @@ export default class Request {
         });
         return response.json();
     }
+
+    async updateTodo(relativeURL,ID,state){
+        const URL = this.baseURL + relativeURL + "/" + ID;
+        console.log(URL);
+        const response = await fetch(URL,{
+            method: "PATCH",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "isFinished": state
+            })
+        });
+        return response.json();
+    }
 }
 
 

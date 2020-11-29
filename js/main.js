@@ -62,18 +62,32 @@ async function removeFinishedTodo(todoID){
 }
 
 
+async function changeTodoState(todoID,todoState){
+    const request = new Request();
+    request.setBaseURL("http://localhost:3000");
+    try{
+        const data = await request.updateTodo("/to-dos",todoID,todoState);
+        console.log(data);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+
 function addTodoClickEvt(todoInput){
+    debugger;
     todoInput.addEventListener("click",()=>{
         const todoItem = todoInput.nextElementSibling;
         if (todoItem.classList.contains("todo-item-finished")){
             todoItem.classList.remove("todo-item-finished");
             removeFromCompletedList(todoItem);
+            
         }
         else{
             todoItem.classList.add("todo-item-finished");
-            addToCompletedList(todoItem);
-            
+            addToCompletedList(todoItem); 
         }
+        changeTodoState(todoItem.id, todoInput.checked);
     });
 }
 

@@ -28,12 +28,12 @@
     {
       "id": "todo-item-wJeTQ",
       "description": "go to the bank",
-      "isFinished": false
+      "isFinished": true
     },
     {
       "id": "todo-item-PfErO",
       "description": "Cenar con Nestor",
-      "isFinished": false
+      "isFinished": true
     }
   ]
 }
