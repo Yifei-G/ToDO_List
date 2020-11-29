@@ -23,13 +23,6 @@ function createTodoList(todos){
             addToCompletedList(todoItem);
         } 
     });
-
-    // adding click eventListener to the tic icon. 
-    const finishedTodos = document.querySelectorAll(".finished-item");
-    finishedTodos.forEach(finishedTodo =>{
-        const finishedTic = finishedTodo.nextElementSibling;
-        addFinishedTodoClickEvt(finishedTodo,finishedTic);
-    });
 }
 
 
@@ -91,33 +84,28 @@ function addFinishedTodoClickEvt(finishedItem, ticIcon){
 }
 
 function removeTodo(finishedItem){
-    debugger;
-    const TodosList = document.querySelector("#todo-list");
-    const finishedTodosList = document.querySelector("#finished-list");
-    const TodoElementID = finishedItem.id.replace("finished","todo");
-    const TodoElement = document.getElementById(TodoElementID);
+    finishedItem.parentElement.classList.add("animate__animated", "animate__lightSpeedOutLeft");
+    
+    finishedItem.parentElement.addEventListener("animationend", ()=>{
+        const TodosList = document.querySelector("#todo-list");
+        const finishedTodosList = document.querySelector("#finished-list");
+        const TodoElementID = finishedItem.id.replace("finished","todo");
+        const TodoElement = document.getElementById(TodoElementID);
 
-    //remove the todo from the todo list
-    // TodoElement is <input> but we want to remove <li> (aka the parentElement)
-    TodosList.removeChild(TodoElement.parentElement);
+        //remove the todo from the todo list
+        // TodoElement is <input> but we want to remove <li> (aka the parentElement)
+        TodosList.removeChild(TodoElement.parentElement);
 
-    //remove the finished todo from the completed todo list
-    // TodoElement is <span> but we want to remove <li> (aka the parentElement)
-    finishedTodosList.removeChild(finishedItem.parentElement);
+        //remove the finished todo from the completed todo list
+        // TodoElement is <span> but we want to remove <li> (aka the parentElement)
+        finishedTodosList.removeChild(finishedItem.parentElement);
 
-
-    //make a delete request to erase this todo.
-    removeFinishedTodo(TodoElementID);
+        //make a delete request to erase this todo.
+        removeFinishedTodo(TodoElementID);
+    })
+    
 
 }
-
-
-
-
-
-
-
-
 
 
 function addTodoOnClick(){
@@ -160,9 +148,13 @@ function addToCompletedList(finishedItem){
     //making a ID for finished todo. 
     //the ID shares the UUID, but start with finished-item
     const finishedElementID = finishedItem.id.replace("todo","finished");
-    const finishedElement = `<li><span id="${finishedElementID}" class="finished-item">${finishedItem.textContent}</span> <i id="${finishedElementID}" class="fas fa-check"></i> </li>`;
+    const finishedElement = `<li><span id="${finishedElementID}" class="finished-item">${finishedItem.textContent}</span> <i id="icon-${finishedElementID}" class="fas fa-check"></i> </li>`;
     const finishedList = document.querySelector("#finished-list");
     finishedList.insertAdjacentHTML("beforeend",finishedElement);
+
+    const finishedTodo = document.querySelector(`#${finishedElementID}`);
+    const finishedTic = finishedTodo.nextElementSibling;
+    addFinishedTodoClickEvt(finishedTodo,finishedTic);
 }
 
 
