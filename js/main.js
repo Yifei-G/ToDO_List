@@ -75,7 +75,6 @@ async function changeTodoState(todoID,todoState){
 
 
 function addTodoClickEvt(todoInput){
-    debugger;
     todoInput.addEventListener("click",()=>{
         const todoItem = todoInput.nextElementSibling;
         if (todoItem.classList.contains("todo-item-finished")){
