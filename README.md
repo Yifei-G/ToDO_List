@@ -30,3 +30,9 @@ Make sure the jason-server is running at localhost:3000/
 localhost:8000/main.html
 
 6. This should allow you to run the To-do list
+
+## Known issues:
+
+Please don't run this project in Mozilla Firefox, due to this known [bug](https://bugzilla.mozilla.org/show_bug.cgi?id=876341)
+
+backface-visibility:hidden is ignored by Firefox
