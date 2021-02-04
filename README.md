@@ -26,7 +26,7 @@ jason-server --watch data.json
 ```
 Make sure the jason-server is running at localhost:3000/
 
-5. Open your brower and then type:
+5. Open your browser and then type:
 localhost:8000/main.html
 
 6. This should allow you to run the To-do list
